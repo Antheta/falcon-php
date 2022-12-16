@@ -1,6 +1,6 @@
 {
     "name": "marcosraudkett/scraper",
-    "description": "A PHP Website Scraper & Parser. Scrape a single or multiple websites for email addresses or ip addresses / proxies. API for scraping.",
+    "description": "A PHP Website Scraper & Parser. Scrape a single or multiple websites for email addresses or ip addresses / proxies.",
     "type": "library",
     "license": "MIT",
     "autoload": {

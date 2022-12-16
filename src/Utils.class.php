@@ -1,19 +1,18 @@
 <?php
 
+namespace marcosraudkett;
+
 /**
  * Utils for the Scraper
  *
- * PHP version 7
- *
  * @author     Marcos Raudkett <info@marcosraudkett.com>
- * @copyright  2022 Marcos Raudkett
+ * @copyright  2023 Marcos Raudkett
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @version    2.0.0
+ * @version    0.1.0
  */
 
-abstract class Utils 
+abstract class Utils
 {
-
     /**
      * Response in JSON
      */
@@ -22,5 +21,4 @@ abstract class Utils
         header('Content-type: application/json');
         echo json_encode($response);
     }
-
 }

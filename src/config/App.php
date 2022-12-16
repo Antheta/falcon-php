@@ -1,21 +1,39 @@
 <?php
 
+namespace marcosraudkett;
+
 /**
  * App Configuration
- * 
- * PHP version 7
  *
  * @author     Marcos Raudkett <info@marcosraudkett.com>
- * @copyright  2022 Marcos Raudkett
+ * @copyright  2023 Marcos Raudkett
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @version    2.0.0
+ * @version    0.1.0
  */
 
 class App
 {
 	
 	const
-		SIMPLE_HTML_DOM_DIRECTORY = '../vendor/simple_html_dom/simple_html_dom.php'
+		
+		// ** driver in use
+		DRIVER = SIMPLE_HTML_DOM,
+
+		// ** driver paths
+		SIMPLE_HTML_DOM = "../vendor/simple_html_dom/simple_html_dom.php",
+		CASPERJS = "",
+
+		PARSERS = [
+			"email",
+			"ip",
+			"form",
+			"link",
+			"image",
+			"stylesheet",
+			"script",
+			"font",
+		]
+
 	;
 
 }
