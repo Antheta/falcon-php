@@ -123,9 +123,24 @@ class Parser extends Validator
         return $images;
     }
 
-    public static function stylesheet()
+    public static function stylesheet($nodes)
     {
+        $nodes = $nodes["doc"];
+        $stylesheets = array();
+        foreach ($nodes as $node) {
+            if ($node->find('link[rel="stylesheet"]')) {
+                foreach ($node->find('link[rel="stylesheet"]') as $i => $node) {
+                    if (
+                        $node->attr("href") &&
+                        !in_array(str_replace('&amp;', '&', $node->attr("href")), $stylesheets)
+                    ) $stylesheets[] = str_replace('&amp;', '&', $node->attr("href"));
+                }
+            }
+        }
+
+        return $stylesheets;
     }
+
     public static function script()
     {
     }
