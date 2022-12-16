@@ -103,9 +103,26 @@ class Parser extends Validator
     public static function link()
     {
     }
-    public static function image()
+
+    public static function image($nodes)
     {
+        $nodes = $nodes["doc"];
+        $images = [];
+        foreach ($nodes as $node) {
+            if ($node->find('img[src]')) {
+                foreach ($node->find('img[src]') as $i => $image) {
+                    if ($image->attr("src")) {
+                        if (!in_array(str_replace('&amp;', '&', $image->attr("src")), $images)) {
+                            $images[] = str_replace('&amp;', '&', $image->attr("src"));
+                        }
+                    }
+                }
+            }
+        }
+
+        return $images;
     }
+
     public static function stylesheet()
     {
     }
