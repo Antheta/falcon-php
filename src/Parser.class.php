@@ -7,6 +7,7 @@ require_once "Validator.class.php";
 // configs
 require_once "config/Email.php";
 require_once "config/IpAddress.php";
+require_once "config/Phonenumber.php";
 
 /**
  * Parser for the Scraper
@@ -22,9 +23,10 @@ class Parser extends Validator
 
     public static function email($nodes): array
     {
+        $nodes = $nodes["content"];
         $emails = [];
         foreach (Email::regex() as $regex) {
-            foreach($nodes as $node) {
+            foreach ($nodes as $node) {
                 preg_match_all($regex, $node, $matches);
                 foreach ($matches[0] as $m) {
                     $r = str_replace(Email::at_signs(), "@", $m);
@@ -42,6 +44,7 @@ class Parser extends Validator
 
     public static function ip($nodes)
     {
+        $nodes = $nodes["content"];
         $ip_addresses = [];
         $ip_addresses_checker = [];
         foreach (IpAddress::regex() as $regex) {
@@ -66,6 +69,32 @@ class Parser extends Validator
         }
 
         return $ip_addresses;
+    }
+
+    public static function phonenumber($nodes)
+    {
+        $nodes = $nodes["doc"];
+        $phonenumbers = [];
+        foreach ($nodes as $node) {
+            if (
+                $node->find("a") &&
+                $node->find("a")->attr("href") &&
+                strpos($node->find("a")->attr("href"), 'tel:') !== false
+            ) {
+                $phonenumber = $node->find("a")->attr("href");
+                foreach (Phonenumber::regex() as $regex) {
+                    preg_match_all($regex, $phonenumber, $matches);
+                    foreach ($matches[0] as $m) {
+                        print_r($m);
+                        if (!in_array($m, $phonenumbers)) {
+                            $phonenumbers[] = $m;
+                        }
+                    }
+                }
+            }
+        }
+
+        return $phonenumbers;
     }
 
     public static function form()

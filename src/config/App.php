@@ -26,6 +26,7 @@ class App
 		PARSERS = [
 			"email",
 			"ip",
+			"phonenumber",
 			"form",
 			"link",
 			"image",

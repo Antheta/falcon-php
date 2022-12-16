@@ -5,7 +5,7 @@ NOTE! This is only intended for educational purposes. Please do not use this to 
 
 ## Features
 - Validations
-- Multi engine support
+- Multi "engine" support
   - hQuery
 - Parsers:
   - IP addresses along with the following data (if found from tables): 
@@ -31,19 +31,45 @@ composer require marcosraudkett/email-crawler
 Running the scraper is just as easy as running the following:
 ```php
 $scraper = Scraper::getInstance()->run("https://example.com/");
-$scraper->get(); // get full response
+$result = $scraper->get(); // get full response
 ```
-The example above scrapes the url and prints data in JSON.
+The example above scrapes the url and returns an array.
 
 
-If you wish to scrape specific resources (ip or email)
+### Specific results
+If you wish to get specific resources from the results
 ```php
 $scraper = Scraper::getInstance()->run("https://example.com/");
 // only emails
-$scraper->get("email"); 
+$emails = $scraper->get("email"); 
 // only ip addresses
-$scraper->get("ip");
+$ips = $scraper->get("ip");
 ```
+
+### Using specific parsers
+```php
+$scraper = Scraper::getInstance()->run("https://example.com/");
+// this will only parse emails (see full list of parsers below)
+$emails = $scraper->get(null, ["email"]); 
+```
+
+## Parsers
+
+List of parsers:
+| Name | 
+| - |
+| email | 
+| ip |
+| form |
+| link |
+| image |
+| stylesheet |
+| script |
+| font |
+| from |
+
+## Custom parsers
+If you wish to add new parsers then you can ...
 
 ## Scraping dynamic content
 You could migrate from hQuery to headless JavaScript browser like CapserJS & Phantom to load dynamic content. This way you can also scrape data that is loaded dynamically (after the inital page load).

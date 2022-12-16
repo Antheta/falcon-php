@@ -130,6 +130,7 @@ class Scraper extends Utils
 
                     if (!is_array($node)) {
                         $this->result["content"][] = $node->html() ? $node->html() : $node;
+                        $this->result["doc"][] = $node;
                     }
                 }
             }
@@ -156,7 +157,7 @@ class Scraper extends Utils
 
         foreach ($parsers as $parser) {
             if (in_array($parser, App::PARSERS)) {
-                $this->result[$parser] = Parser::$parser($this->result["content"]);
+                $this->result[$parser] = Parser::$parser($this->result);
             }
         }
 
