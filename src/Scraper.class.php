@@ -14,6 +14,9 @@ require_once "config/App.php";
 
 // Optionally use namespaces
 use duzun\hQuery;
+use marcosraudkett\App;
+use marcosraudkett\Utils;
+use marcosraudkett\Parser;
 use Exception;
 
 /**
@@ -25,7 +28,7 @@ use Exception;
  * @version    0.1.0
  */
 
-class Scraper extends Utils
+class SimplScraper extends Utils
 {
     /**
      * Target website
@@ -37,6 +40,8 @@ class Scraper extends Utils
         'useragent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36'
     ];
 
+    protected $parsers = [];
+
     private static $_instance; //singleton instance
 
     private function __clone()
@@ -45,18 +50,19 @@ class Scraper extends Utils
 
     public function __construct()
     {
+        $this->parsers = App::PARSERS;
     }
 
     /**
      * Get the singleton instance
      *
      * To access rest of non-static methods of class
-     * @return Scraper
+     * @return SimplScraper
      */
     public static function getInstance()
     {
         if (self::$_instance === NULL) {
-            self::$_instance = new Scraper();
+            self::$_instance = new SimplScraper();
         }
 
         return self::$_instance;
@@ -152,12 +158,18 @@ class Scraper extends Utils
     public function get($key = null, $parsers = [])
     {
         if (count($parsers) == 0) {
-            $parsers = App::PARSERS;
+            $parsers = $this->parsers;
         }
 
-        foreach ($parsers as $parser) {
-            if (in_array($parser, App::PARSERS)) {
-                $this->result[$parser] = Parser::$parser($this->result);
+        foreach ($parsers as $parser => $fn) {
+            if (in_array($parser, $this->parsers)) {
+                if (function_exists("Parser::$parser")) {
+                    $this->result[$parser] = Parser::$parser($this->result);
+                } else {
+                    if ($fn) {
+                        $this->result[$parser] = $fn($this->result);
+                    }
+                }
             }
         }
 
@@ -196,5 +208,32 @@ class Scraper extends Utils
     public function setTarget($target)
     {
         if (isset($target)) $this->target = $target;
+    }
+
+    /**
+     * Add a custom parser
+     * 
+     * @param string $parser
+     * @param mixed $fn
+     * @return SimplScraper
+     */
+    public function addParser($parser, $fn)
+    {
+        $this->parsers[$parser] = $fn;
+
+        return $this;
+    }
+
+    public function disableParsers($parsers)
+    {
+        foreach($this->parsers as $parser) {
+            foreach ($parsers as $parser) {
+                if (in_array($parser, $this->parsers)) {
+                    unset($this->parsers[$parser]);
+                }
+            }
+        }
+
+        return $this;
     }
 }

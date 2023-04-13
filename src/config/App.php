@@ -2,6 +2,8 @@
 
 namespace marcosraudkett;
 
+require_once dirname(__DIR__) . "/Parser.class.php";
+
 /**
  * App Configuration
  *
@@ -15,24 +17,37 @@ class App
 {
 	
 	const
-		
-		// ** driver in use
-		DRIVER = SIMPLE_HTML_DOM,
+	
 
 		// ** driver paths
 		SIMPLE_HTML_DOM = "../vendor/simple_html_dom/simple_html_dom.php",
 		CASPERJS = "",
 
+		DRIVERS = [
+			"simple_html_dom" => [
+				"path" => "../vendor/simple_html_dom/simple_html_dom.php"
+			],
+			"hquery" => [
+				"path" => "../vendor/simple_html_dom/simple_html_dom.php"
+			],
+			"casperjs" => [
+				"path" => ""
+			]
+		],
+
+		// ** driver in use
+		DRIVER = "simple_html_dom",
+
 		PARSERS = [
-			"email",
-			"ip",
-			"phonenumber",
-			"form",
-			"link",
-			"image",
-			"stylesheet",
-			"script",
-			"font",
+			"email" => "Parser::email",
+			"ip" => "Parser::ip",
+			"phonenumber" => "Parser::phonenumber",
+			"form" => "Parser::form",
+			"link" => "Parser::link",
+			"image" => "Parser::image",
+			"stylesheet" => "Parser::stylesheet",
+			"script" => "Parser::script",
+			"font" => "Parser::font",
 		]
 
 	;
