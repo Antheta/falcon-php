@@ -95,6 +95,18 @@ $scraper->addParser("myCustomParser", function($payload) {
 $scraper->get("myCustomParser");
 ```
 
+## Custom drivers
+
+Start by creating your own driver class that extends the `Driver` interface and implement the driver specific logic within those methods.
+
+```php
+$scraper = Scraper::getInstance();
+
+$scraper->addDrivers([
+  "myDriver" => MyDriver::class
+]);
+```
+
 ## Scraping dynamic content
 You could migrate from hQuery to headless JavaScript browser like CapserJS & Phantom to load dynamic content. This way you can also scrape data that is loaded dynamically (after the inital page load).
 

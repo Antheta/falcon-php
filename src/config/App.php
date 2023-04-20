@@ -17,27 +17,24 @@ class App
 {
 	
 	const
-	
 
-		// ** driver paths
-		SIMPLE_HTML_DOM = "../vendor/simple_html_dom/simple_html_dom.php",
-		CASPERJS = "",
-
+		/**
+		 * List of drivers
+		 */
 		DRIVERS = [
-			"simple_html_dom" => [
-				"path" => "../vendor/simple_html_dom/simple_html_dom.php"
-			],
-			"hquery" => [
-				"path" => "../vendor/simple_html_dom/simple_html_dom.php"
-			],
-			"casperjs" => [
-				"path" => ""
-			]
+			"hquery" => hQueryDriver::class,
+			"simple_html_dom" => null,
+			"casperjs" => null
 		],
 
-		// ** driver in use
-		DRIVER = "simple_html_dom",
+		// ** default driver
+		DRIVER = "hquery",
 
+		/**
+		 * List of parsers
+		 * 
+		 * "name" => "function"
+		 */
 		PARSERS = [
 			"email" => "Parser::email",
 			"ip" => "Parser::ip",

@@ -3,7 +3,7 @@
 namespace marcosraudkett;
 
 // vendors
-require_once dirname(__DIR__) . "/vendor/autoload.php";
+// require_once dirname(__DIR__) . "/vendor/autoload.php";
 
 // core
 require_once "Utils.class.php";
@@ -17,6 +17,7 @@ use duzun\hQuery;
 use marcosraudkett\App;
 use marcosraudkett\Utils;
 use marcosraudkett\Parser;
+use marcosraudkett\Traits\Options;
 use Exception;
 
 /**
@@ -30,17 +31,21 @@ use Exception;
 
 class SimplScraper extends Utils
 {
+
+    use Options;
+
     /**
      * Target website
      */
     public $target;
     public $result = [];
-    public $configuration = [
+    /* public $configuration = [
         'method' => 'GET',
         'useragent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36'
-    ];
+    ]; */
 
     protected $parsers = [];
+    protected $drivers = [];
 
     private static $_instance; //singleton instance
 
@@ -51,6 +56,7 @@ class SimplScraper extends Utils
     public function __construct()
     {
         $this->parsers = App::PARSERS;
+        $this->drivers = App::DRIVERS;
     }
 
     /**
@@ -72,9 +78,9 @@ class SimplScraper extends Utils
      * Run Scraper
      * 
      * @param string $target
-     * @return object
+     * @return SimplScraper
      */
-    public function run($target = null): object
+    public function run($target = null) : SimplScraper
     {
         try {
             if (!$this->checkTarget()) {
@@ -95,7 +101,7 @@ class SimplScraper extends Utils
         return $this;
     }
 
-    public function getContext()
+    /* public function getContext()
     {
         return stream_context_create([
             'http' => [
@@ -104,16 +110,16 @@ class SimplScraper extends Utils
                 'header' => [],
             ]
         ]);
-    }
+    } */
 
-    public function scrape()
+    /* public function scrape()
     {
         $doc = hQuery::fromFile($this->target, false, $this->getContext());
 
         if ($doc && $doc->find('html')) {
             return $this->recursive($doc->find('html'));
         }
-    }
+    } */
 
     public function recursive($html)
     {
@@ -217,14 +223,14 @@ class SimplScraper extends Utils
      * @param mixed $fn
      * @return SimplScraper
      */
-    public function addParser($parser, $fn)
+    public function addParser($parser, $fn): SimplScraper
     {
         $this->parsers[$parser] = $fn;
 
         return $this;
     }
 
-    public function disableParsers($parsers)
+    public function disableParsers($parsers): SimplScraper
     {
         foreach($this->parsers as $parser) {
             foreach ($parsers as $parser) {
@@ -232,6 +238,21 @@ class SimplScraper extends Utils
                     unset($this->parsers[$parser]);
                 }
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Add a custom drivers
+     * 
+     * @param array $drivers
+     * @return SimplScraper
+     */
+    public function addDrivers($drivers) : SimplScraper
+    {
+        foreach($drivers as $driver => $class) {
+            $this->drivers[$driver] = $class;
         }
 
         return $this;
