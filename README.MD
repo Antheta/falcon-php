@@ -1,5 +1,5 @@
 # SimplScraper
-A PHP Library for scraping IP/Email addresses with ease.
+A PHP Library for scraping websites.
 
 NOTE! This is only intended for educational purposes. Please do not use this to gather emails for spam since nobody likes it.
 
@@ -11,6 +11,8 @@ NOTE! This is only intended for educational purposes. Please do not use this to 
   - hQuery
   - CasperJs
 - Built in parsers:
+  - Email addresses
+  - Phonenumbers
   - IP addresses along with the following data (if found from tables): 
     - Proxy protocol
     - Level of anonymity
@@ -61,7 +63,7 @@ $scraper->disableParsers(["form", "link"])->get();
 
 ## Parsers
 
-List of parsers:
+List of built-in parsers:
 | Name | 
 | - |
 | email | 
@@ -97,7 +99,7 @@ $scraper->get("myCustomParser");
 
 ## Custom drivers
 
-Start by creating your own driver class that extends the `Driver` interface and implement the driver specific logic within those methods.
+Start by creating your own driver class that extends the `Driver` interface and implement the driver specific logic within class.
 
 ```php
 $scraper = Scraper::getInstance();
