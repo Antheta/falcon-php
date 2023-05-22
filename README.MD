@@ -1,5 +1,13 @@
-# SimplScraper
-A PHP Library for scraping websites.
+<p align="center">
+ <a href="https://roadrunner.dev" target="_blank">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/7326800/205905278-3899e2c8-5c15-4347-820b-a8ea4c5ba2d7.png">
+    <img align="center" src="./assets/falcon.png" height="150">
+  </picture>
+</a>
+</p>
+
+Falcon is an open-source (MIT licensed) high-performance PHP web scraper with built-in parsers and extendability.
 
 NOTE! This is only intended for educational purposes. Please do not use this to gather emails for spam since nobody likes it.
 
@@ -29,7 +37,7 @@ NOTE! This is only intended for educational purposes. Please do not use this to 
 
 ### Composer
 ```bash
-composer require marcosraudkett/email-crawler
+composer require antheta/falcon
 ```
 
 ## Usage
