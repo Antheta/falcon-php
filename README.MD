@@ -1,5 +1,5 @@
 <p align="center">
- <a href="https://roadrunner.dev" target="_blank">
+ <a href="https://antheta.com" target="_blank">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="./assets/falcon.png">
     <img align="center" src="./assets/falcon.png" height="150">
@@ -42,30 +42,18 @@ composer require antheta/falcon
 ## Usage
 Running the scraper:
 ```php
-$scraper = Scraper::getInstance()->run("https://example.com/");
-$result = $scraper->get(); // get full response
+$falcon = Falcon::getInstance()->run("https://example.com/");
+$result = $falcon->parse(); // parse full response
 ```
 The example above scrapes the url and returns an array.
 
 
-### Specific results
+### Use specific parsers
 If you wish to get specific resources from the results
 ```php
-$scraper = Scraper::getInstance()->run("https://example.com/");
+$falcon = Falcon::getInstance()->run("https://example.com/");
 // only emails
-$emails = $scraper->get("email"); 
-// only ip addresses
-$ips = $scraper->get("ip");
-```
-
-### Only using specific parsers
-```php
-$scraper = Scraper::getInstance()->run("https://example.com/");
-// this will only parse emails (see full list of parsers below)
-$emails = $scraper->get(null, ["email"]); 
-
-// or by disabling certain parsers
-$scraper->disableParsers(["form", "link"])->get();
+$emails = $falcon->parse(["email", "ip"]); 
 ```
 
 ## Parsers
@@ -87,21 +75,21 @@ List of built-in parsers:
 You can also add your own logic:
 
 ```php
-$scraper = Scraper::getInstance();
+$falcon = Falcon::getInstance();
 
-$scraper->addParser("myCustomParser", fn ($payload) => MyParser($payload));
+$falcon->addParser("myCustomParser", fn ($payload) => MyParser($payload));
 
 function MyParser($payload) {
   // your custom logic here
 }
 
 // or
-$scraper->addParser("myCustomParser", function($payload) {
+$falcon->addParser("myCustomParser", function($payload) {
   // your custom logic here
 });
 
 // result from your parser
-$scraper->get("myCustomParser");
+$falcon->get("myCustomParser");
 ```
 
 ## Custom drivers
@@ -109,9 +97,9 @@ $scraper->get("myCustomParser");
 Start by creating your own driver class that extends the `Driver` interface and implement the driver specific logic within class.
 
 ```php
-$scraper = Scraper::getInstance();
+$falcon = Falcon::getInstance();
 
-$scraper->addDrivers([
+$falcon->addDrivers([
   "myDriver" => MyDriver::class
 ]);
 ```
