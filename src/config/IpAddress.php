@@ -1,15 +1,6 @@
 <?php
 
-namespace marcosraudkett;
-
-/**
- * IP Address Configuration
- *
- * @author     Marcos Raudkett <info@marcosraudkett.com>
- * @copyright  2022 Marcos Raudkett
- * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @version    0.1.0
- */
+namespace Antheta\Falcon\Config;
 
 class IpAddress
 {

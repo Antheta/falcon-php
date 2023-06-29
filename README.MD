@@ -13,11 +13,10 @@ NOTE! This is only intended for educational purposes. Please do not use this to 
 
 ## Features
 - Hackable
+- Extendable (Ability to create custom parsers & drivers)
 - Validations
 - Multi driver support
-  - simple_html_dom
   - hQuery
-  - CasperJs
 - Built in parsers:
   - Email addresses
   - Phonenumbers

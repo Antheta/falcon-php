@@ -1,8 +1,8 @@
 <?php
 
-namespace marcosraudkett\Traits;
+namespace Antheta\Falcon\Traits;
 
-trait Options {
+trait HasOptions {
     public function setUserAgent($userAgent) {
         $this->configuration["useragent"] = $userAgent;
     }

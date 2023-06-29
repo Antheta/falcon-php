@@ -1,21 +1,14 @@
 {
-    "name": "marcosraudkett/scraper",
+    "name": "antheta/falcon",
     "description": "A PHP Website Scraper & Parser. Scrape a single or multiple websites for email addresses or ip addresses / proxies.",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "marcosraudkett\\": "src/"
+            "Antheta\\Falcon\\": "src/"
         }
     },
-    "authors": [
-        {
-            "name": "Marcos Raudkett",
-            "email": "info@marcosraudkett.com"
-        }
-    ],
     "require": {
-        "bramus/router": "^1.6",
         "duzun/hquery": "^3.0"
     }
 }

@@ -1,17 +1,6 @@
 <?php
 
-namespace marcosraudkett;
-
-require_once dirname(__DIR__) . "/Parser.class.php";
-
-/**
- * App Configuration
- *
- * @author     Marcos Raudkett <info@marcosraudkett.com>
- * @copyright  2023 Marcos Raudkett
- * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @version    0.1.0
- */
+namespace Antheta\Falcon\Config;
 
 class App
 {
@@ -22,7 +11,7 @@ class App
 		 * List of drivers
 		 */
 		DRIVERS = [
-			"hquery" => hQueryDriver::class,
+			"hquery" => \Antheta\Falcon\Drivers\hQueryDriver::class,
 			"simple_html_dom" => null,
 			"casperjs" => null
 		],

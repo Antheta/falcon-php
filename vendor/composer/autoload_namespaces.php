@@ -7,5 +7,4 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'hQuery' => array($vendorDir . '/duzun/hquery/src'),
-    'Bramus' => array($vendorDir . '/bramus/router/src'),
 );

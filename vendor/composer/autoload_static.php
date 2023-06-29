@@ -7,24 +7,24 @@ namespace Composer\Autoload;
 class ComposerStaticInit7997453520e4c02750ee26b1f6713eb0
 {
     public static $prefixLengthsPsr4 = array (
-        'm' => 
-        array (
-            'marcosraudkett\\' => 15,
-        ),
         'd' => 
         array (
             'duzun\\' => 6,
         ),
+        'A' => 
+        array (
+            'Antheta\\Falcon\\' => 15,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'marcosraudkett\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
-        ),
         'duzun\\' => 
         array (
             0 => __DIR__ . '/..' . '/duzun/hquery/src',
+        ),
+        'Antheta\\Falcon\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
     );
 
@@ -34,13 +34,6 @@ class ComposerStaticInit7997453520e4c02750ee26b1f6713eb0
             'hQuery' => 
             array (
                 0 => __DIR__ . '/..' . '/duzun/hquery/src',
-            ),
-        ),
-        'B' => 
-        array (
-            'Bramus' => 
-            array (
-                0 => __DIR__ . '/..' . '/bramus/router/src',
             ),
         ),
     );

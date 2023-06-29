@@ -2,19 +2,16 @@
 
 require_once dirname(__DIR__) . "/vendor/autoload.php";
 
-use marcosraudkett\SimplScraper;
-
-// require_once dirname(__DIR__) . "/src/Scraper.class.php";
+use Antheta\Falcon\Falcon;
 
 $url = "http://127.0.0.1/email-crawler/examples/tmp/index.html";
 
 // example usage
-$scraper = SimplScraper::getInstance()
+$falcon = Falcon::getInstance()
             ->addParser("test", function($p) {
-                print_r("TEST");
-                print_r($p);
+                // print_r("TEST");
             });
 
-$scraper = $scraper->run($url)->get();
+$results = $falcon->run($url)->parse();
 
-// print_r($scraper);
+print_r($results);

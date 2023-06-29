@@ -6,6 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'marcosraudkett\\' => array($baseDir . '/src'),
     'duzun\\' => array($vendorDir . '/duzun/hquery/src'),
+    'Antheta\\Falcon\\' => array($baseDir . '/src'),
 );

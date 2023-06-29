@@ -1,26 +1,14 @@
 <?php
 
-namespace marcosraudkett;
+namespace Antheta\Falcon;
 
-require_once "Validator.class.php";
-
-// configs
-require_once "config/Email.php";
-require_once "config/IpAddress.php";
-require_once "config/Phonenumber.php";
-
-/**
- * Parser for the Scraper
- *
- * @author     Marcos Raudkett <info@marcosraudkett.com>
- * @copyright  2023 Marcos Raudkett
- * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @version    0.1.0
- */
+use Antheta\Falcon\Config\Email;
+use Antheta\Falcon\Config\IpAddress;
+use Antheta\Falcon\Config\Phonenumber;
+use Antheta\Falcon\Validator;
 
 class Parser extends Validator
 {
-
     public static function email($nodes): array
     {
         $nodes = $nodes["content"];
@@ -85,7 +73,7 @@ class Parser extends Validator
                 foreach (Phonenumber::regex() as $regex) {
                     preg_match_all($regex, $phonenumber, $matches);
                     foreach ($matches[0] as $m) {
-                        print_r($m);
+                        //print_r($m);
                         if (!in_array($m, $phonenumbers)) {
                             $phonenumbers[] = $m;
                         }
