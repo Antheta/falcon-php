@@ -42,7 +42,7 @@ composer require antheta/falcon
 Running the scraper:
 ```php
 $falcon = Falcon::getInstance()->run("https://example.com/");
-$result = $falcon->parse(); // parse full response
+$result = $falcon->parse()->results(); // use all available parsers and get all results
 ```
 The example above scrapes the url and returns an array.
 
@@ -51,24 +51,25 @@ The example above scrapes the url and returns an array.
 If you wish to get specific resources from the results
 ```php
 $falcon = Falcon::getInstance()->run("https://example.com/");
-// only emails
-$emails = $falcon->parse(["email", "ip"]); 
+// only returns emails
+$emails = $falcon->parse(["email", "ip"])->emails(); 
 ```
 
-## Parsers
+## Methods
 
-List of built-in parsers:
+Helper methods for returning the results:
 | Name | 
 | - |
-| email | 
-| ip |
-| form |
-| link |
-| image |
-| stylesheet |
-| script |
-| font |
-| from |
+| results | 
+| emails | 
+| ipAddresses |
+| forms |
+| links |
+| images |
+| stylesheets |
+| scripts |
+| fonts |
+| froms |
 
 ## Custom parsers
 You can also add your own logic:
@@ -88,12 +89,12 @@ $falcon->addParser("myCustomParser", function($payload) {
 });
 
 // result from your parser
-$falcon->get("myCustomParser");
+$falcon->parse("myCustomParser")->results()["myCustomParser"];
 ```
 
 ## Custom drivers
 
-Start by creating your own driver class that extends the `Driver` interface and implement the driver specific logic within class.
+Start by creating your own driver class that extends the `DriverInterface` interface and implement the driver specific logic within class.
 
 ```php
 $falcon = Falcon::getInstance();

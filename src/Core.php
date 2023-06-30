@@ -77,7 +77,7 @@ class Core extends Utils
                 Parser::parse($this->document, $parser);
         }
 
-        return $this->result;
+        return $this;
     }
 
     /**
