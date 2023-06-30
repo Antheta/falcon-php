@@ -14,4 +14,4 @@ $falcon = Falcon::getInstance()
 
 $results = $falcon->run($url)->parse();
 
-print_r($results->emails());
+print_r($results->results());
