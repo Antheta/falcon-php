@@ -2,7 +2,7 @@
 
 namespace Antheta\Falcon\Drivers\Interfaces;
 
-interface Driver {
+interface DriverInterface {
     /**
      * The scrape method should get the dom from target site
      */

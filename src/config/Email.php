@@ -5,7 +5,7 @@ namespace Antheta\Falcon\Config;
 class Email
 {
 
-	public static function regex() {
+	public function regex() {
 		return [
 			'/[\._a-zA-Z0-9-]+@[\._a-zA-Z0-9-]+/i', 
 			'/[\._a-zA-Z0-9-]+\(at\)[\._a-zA-Z0-9-]+/i', 
@@ -29,7 +29,7 @@ class Email
  	   ];
 	}
 
-	public static function at_signs() {
+	public function at_signs() {
 		return [
 			'@',  
 			'@ ',  

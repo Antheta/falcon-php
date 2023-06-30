@@ -3,9 +3,9 @@
 namespace Antheta\Falcon\Drivers;
 
 use duzun\hQuery;
-use Antheta\Falcon\Drivers\Interfaces\Driver;
+use Antheta\Falcon\Drivers\Interfaces\DriverInterface;
 
-class hQueryDriver implements Driver
+class hQueryDriver implements DriverInterface
 {
     public $content;
 

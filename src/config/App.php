@@ -25,15 +25,15 @@ class App
 		 * "name" => "function"
 		 */
 		PARSERS = [
-			"email" => "Parser::email",
-			"ip" => "Parser::ip",
-			"phonenumber" => "Parser::phonenumber",
-			"form" => "Parser::form",
-			"link" => "Parser::link",
-			"image" => "Parser::image",
-			"stylesheet" => "Parser::stylesheet",
-			"script" => "Parser::script",
-			"font" => "Parser::font",
+			"email" => \Antheta\Falcon\Parsers\Email::class,
+			"phonenumber" => \Antheta\Falcon\Parsers\Phonenumber::class,
+			"ipaddress" => \Antheta\Falcon\Parsers\IpAddress::class,
+			"form" => \Antheta\Falcon\Parsers\Form::class,
+			"link" => \Antheta\Falcon\Parsers\Link::class,
+			"image" => \Antheta\Falcon\Parsers\Image::class,
+			"stylesheet" => \Antheta\Falcon\Parsers\Stylesheet::class,
+			"script" => \Antheta\Falcon\Parsers\Script::class,
+			"font" => \Antheta\Falcon\Parsers\Font::class,
 		]
 
 	;

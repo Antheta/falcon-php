@@ -76,15 +76,10 @@ class Core extends Utils
         }
 
         foreach ($parsers as $parser => $fn) {
-            if (isset($this->parsers[$parser])) {
-                if (method_exists(Parser::class, $parser)) {
-                    $this->result[$parser] = Parser::$parser($this->document);
-                } else {
-                    if ($fn) {
-                        $this->result[$parser] = $fn($this->document);
-                    }
-                }
-            }
+            // check if is closure instance
+            $this->result[$parser] = ($fn instanceof \Closure) ?
+                $fn($this->document, $parser) :
+                Parser::parse($this->document, $parser);
         }
 
         return $this->result;
