@@ -21,13 +21,12 @@ class Core extends Utils
 
     public $document = [];
 
-    protected $parsers = [];
-    protected $drivers = [];
+    protected $parsers = App::PARSERS;
+
+    protected $drivers = App::DRIVERS;
 
     public function __construct()
     {
-        $this->parsers = App::PARSERS;
-        $this->drivers = App::DRIVERS;
         $this->driver = new $this->drivers[App::DRIVER];
     }
 
@@ -40,15 +39,15 @@ class Core extends Utils
     public function run($target = null) : Core
     {
         try {
-            if (!$this->checkTarget()) {
-                // set target site
-                $this->setTarget($target);
-
-                // scrape
-                $this->document = $this->getDriver()->scrape($target);
-            } else {
-                $this->response(["message" => "Missing URL parameter"]);
+            if ($this->checkTarget()) {
+                throw new \Exception("Missing target site!");
             }
+
+            // set target site
+            $this->setTarget($target);
+
+            // scrape
+            $this->document = $this->getDriver()->scrape($target);
         } catch (Exception $e) {
             $this->document = ['error' => $e];
         }
@@ -79,16 +78,6 @@ class Core extends Utils
         }
 
         return $this->result;
-    }
-
-    /**
-     * Response in JSON
-     * 
-     * @return json
-     */
-    public function responseJson()
-    {
-        $this->response($this->document);
     }
 
     /**
