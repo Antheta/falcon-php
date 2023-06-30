@@ -2,12 +2,14 @@
 
 namespace Antheta\Falcon\Config;
 
-class Phonenumber
+class PhonenumberConfig
 {
+	public $custom_regexes = [];
 
-	public static function regex() {
+	public function regex() {
 		return [
 			'/([\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,12})/',
+			...$this->custom_regexes
  	   ];
 	}
 

@@ -30,4 +30,18 @@ trait ParserControl
 
         return $this;
     }
+
+    public function addRegexes($parser, $regexes) 
+    {
+        if (isset($regexes) && is_array($regexes) && !empty($regexes)) {
+            foreach ($regexes as $regex) {
+                $this->addRegex($parser, $regex);
+            }
+        }
+    }
+
+    public function addRegex($parser, string $regex): void
+    {
+        $this->custom_regexes[$parser] = $regex;
+    }
 }

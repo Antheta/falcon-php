@@ -2,8 +2,9 @@
 
 namespace Antheta\Falcon\Config;
 
-class Email
+class EmailConfig
 {
+	public $custom_regexes = [];
 
 	public function regex() {
 		return [
@@ -25,7 +26,8 @@ class Email
 			'/[a-z0-9_\-\+\.]+\%at\%[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i',
 			'/[a-z0-9_\-\+\.]+\%@\%[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i',
 			'/[a-z0-9_\-\+\.]+\%\(at\)\%[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i',
-			'/[a-z0-9_\-\+\.]+\(ät\)[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i'
+			'/[a-z0-9_\-\+\.]+\(ät\)[a-z0-9\-]+\.([a-z]{2,4})(?:\.[a-z]{2})?/i',
+			...$this->custom_regexes
  	   ];
 	}
 

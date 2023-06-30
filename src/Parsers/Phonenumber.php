@@ -2,11 +2,14 @@
 
 namespace Antheta\Falcon\Parsers;
 
-use Antheta\Falcon\Config\Phonenumber as PhonenumberConfig;
+use Antheta\Falcon\Config\PhonenumberConfig;
 use Antheta\Falcon\Parsers\Interfaces\ParserInterface;
+use Antheta\Falcon\Traits\RegexControl;
 
 class Phonenumber extends PhonenumberConfig implements ParserInterface
 {
+    use RegexControl;
+
     public function parse($input): array 
     {
         $content = $input["doc"];
@@ -20,7 +23,7 @@ class Phonenumber extends PhonenumberConfig implements ParserInterface
             ) {
                 $phonenumber = $node->find("a")->attr("href");
                 foreach ($this->regex() as $regex) {
-                    preg_match_all($regex, $phonenumber, $matches);
+                    @preg_match_all($regex, $phonenumber, $matches);
                     foreach ($matches[0] as $m) {
                         if (!in_array($m, $phonenumbers)) {
                             $phonenumbers[] = $m;

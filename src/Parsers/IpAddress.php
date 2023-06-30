@@ -2,12 +2,15 @@
 
 namespace Antheta\Falcon\Parsers;
 
-use Antheta\Falcon\Config\IpAddress as IpAddressConfig;
+use Antheta\Falcon\Config\IpAddressConfig;
 use Antheta\Falcon\Parsers\Interfaces\ParserInterface;
+use Antheta\Falcon\Traits\RegexControl;
 use Antheta\Falcon\Validator;
 
 class IpAddress extends IpAddressConfig implements ParserInterface
 {
+    use RegexControl;
+
     public function parse($input): array 
     {
         $content = $input["content"];

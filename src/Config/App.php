@@ -7,9 +7,7 @@ class App
 	
 	const
 
-		/**
-		 * List of drivers
-		 */
+		// ** default drivers
 		DRIVERS = [
 			"hquery" => \Antheta\Falcon\Drivers\hQueryDriver::class,
 			"simple_html_dom" => null,
@@ -19,11 +17,7 @@ class App
 		// ** default driver
 		DRIVER = "hquery",
 
-		/**
-		 * List of parsers
-		 * 
-		 * "name" => "function"
-		 */
+		// ** default parsers
 		PARSERS = [
 			"email" => \Antheta\Falcon\Parsers\Email::class,
 			"phonenumber" => \Antheta\Falcon\Parsers\Phonenumber::class,

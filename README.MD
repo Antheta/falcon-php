@@ -16,6 +16,7 @@ NOTE! This is only intended for educational purposes. Please do not use this to 
 - Extendable (Ability to create custom parsers & drivers)
 - Multi driver support
   - hQuery
+- Custom regex support for every parser
 - Built in parsers:
   - Email addresses
   - Phonenumbers
@@ -70,6 +71,31 @@ Helper methods for returning the results:
 | scripts |
 | fonts |
 | froms |
+
+## Custom regexes
+To add your own regexes to parsers you can just use the `addRegexes` helper:
+
+```php
+// this will attempt to parse emails with the given regex
+$falcon = Falcon::getInstance()
+          ->addRegexes("email", ["/[\._a-zA-Z0-9-]+@[\._a-zA-Z0-9-ddd]+/i"])
+          ->run("https://example.com/")->parse()->emails();
+
+// you can extend this to other parsers as well and add as many regexes as needed
+$falcon = Falcon::getInstance()
+            // regexes for emails
+            ->addRegexes("email", [
+              "/[\._a-zA-Z0-9-]+@[\._a-zA-Z0-9-ddd]+/i",
+              "/[\._a-zA-Z0-9-]+\(at\)[\._a-zA-Z0-9-]+/i",
+            ])
+            // regexes for phonenumbers
+            ->addRegexes("phonenumber", [
+              "/([\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,12})/",
+            ])
+            ->run("https://example.com/")
+            ->parse()
+            ->results();
+```
 
 ## Custom parsers
 You can also add your own logic:
