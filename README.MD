@@ -16,7 +16,7 @@ NOTE! This is only intended for educational purposes. Please do not use this to 
 - Extendable (Ability to create custom parsers & drivers)
 - Multi driver support
   - hQuery
-- Custom regex support for every parser
+- Custom regex support
 - Built in parsers:
   - Email addresses
   - Phonenumbers
