@@ -12,7 +12,6 @@ Falcon is an open-source (MIT licensed) high-performance PHP web scraper with bu
 NOTE! This is only intended for educational purposes. Please do not use this to gather emails or any other personal data for spam.
 
 ## Features
-- Hackable
 - Extendable (Ability to create custom parsers & drivers)
 - Multi driver support
   - hQuery
