@@ -7,11 +7,13 @@
 </a>
 </p>
 
-[Documentation](http://docs.antheta.com/)
-
 Falcon is an open-source (MIT licensed) high-performance PHP web scraper with built-in parsers and extendability.
 
 Please notice that this library is not intended to be used to gather emails or any other personal data for spam.
+
+## Documentation
+
+[Documentation](http://docs.antheta.com/)
 
 ## Features
 - Extendable (Ability to create custom parsers & drivers).
