@@ -21,4 +21,11 @@ trait RegexControl
             $this->custom_regexes[] = $regex;
         }
     }
+
+    public function resetDefaultRegexes(): void
+    {
+        if (isset($this->default_regexes)) {
+            $this->default_regexes = [];
+        }
+    }
 }

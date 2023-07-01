@@ -2,17 +2,25 @@
 
 namespace Antheta\Falcon;
 
-use Antheta\Falcon\Validator;
-
-class Parser extends Validator
+class Parser
 {
-    public static function parse($document, $parser, $regexes) 
+    public static function parse($document, $parser, $regexes, $options = []) 
     {
         $parserClass = ucfirst($parser);
         if (class_exists("\\Antheta\\Falcon\\Parsers\\$parserClass") && is_string($parserClass)) {
             $parserClass = "\\Antheta\\Falcon\\Parsers\\$parserClass";
             try {
                 $instance = (new $parserClass);
+
+                // reset default regexes
+                if (
+                    isset($options["reset_default_regexes"]) && 
+                    method_exists($instance, "resetDefaultRegexes")
+                ) {
+                    if (is_array($options["reset_default_regexes"]) && in_array($parser, $options["reset_default_regexes"])) {
+                        $instance->resetDefaultRegexes();
+                    }
+                }
 
                 // custom regexes
                 if (method_exists($instance, "addRegexes")) {

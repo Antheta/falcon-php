@@ -15,6 +15,8 @@ class Core extends Utils
 
     public $document = [];
 
+    protected $parser_options = [];
+
     protected $parsers = App::PARSERS;
 
     protected $drivers = App::DRIVERS;
@@ -68,7 +70,7 @@ class Core extends Utils
             // check if is closure instance
             $this->result[$parser] = ($fn instanceof \Closure) ?
                 $fn($this->document, $parser) :
-                Parser::parse($this->document, $parser, $this->custom_regexes);
+                Parser::parse($this->document, $parser, $this->custom_regexes, $this->parser_options);
         }
 
         return $this;

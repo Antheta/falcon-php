@@ -44,4 +44,9 @@ trait ParserControl
     {
         $this->custom_regexes[$parser] = $regex;
     }
+
+    public function resetDefaultRegexes($parser = null)
+    {
+        $this->parser_options["reset_default_regexes"] = ($parser) ? $parser : true;
+    }
 }

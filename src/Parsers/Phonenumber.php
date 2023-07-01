@@ -24,6 +24,10 @@ class Phonenumber extends PhonenumberConfig implements ParserInterface
                 $phonenumber = $node->find("a")->attr("href");
                 foreach ($this->regex() as $regex) {
                     @preg_match_all($regex, $phonenumber, $matches);
+                    if (!isset($matches[0])) {
+                        continue;
+                    }
+                    
                     foreach ($matches[0] as $m) {
                         if (!in_array($m, $phonenumbers)) {
                             $phonenumbers[] = $m;

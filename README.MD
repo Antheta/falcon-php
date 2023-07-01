@@ -7,9 +7,11 @@
 </a>
 </p>
 
+[Documentation](http://docs.antheta.com/)
+
 Falcon is an open-source (MIT licensed) high-performance PHP web scraper with built-in parsers and extendability.
 
-NOTE! This is only intended for educational purposes. Please do not use this to gather emails or any other personal data for spam.
+Please notice that this library is not intended to be used to gather emails or any other personal data for spam.
 
 ## Features
 - Extendable (Ability to create custom parsers & drivers).
@@ -49,6 +51,7 @@ Helper methods for returning the results:
 | - |
 | results | 
 | emails | 
+| phonenumbers | 
 | ipAddresses |
 | forms |
 | links |
@@ -56,7 +59,6 @@ Helper methods for returning the results:
 | stylesheets |
 | scripts |
 | fonts |
-| froms |
 
 ## Custom regexes
 To add your own regexes to parsers you can just use the `addRegexes` helper:

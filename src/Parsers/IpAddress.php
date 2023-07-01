@@ -20,6 +20,10 @@ class IpAddress extends IpAddressConfig implements ParserInterface
         foreach ($this->regex() as $regex) {
             foreach ($content as $node) {
                 preg_match_all($regex, $node, $m);
+                if (!isset($m[0])) {
+                    continue;
+                }
+
                 foreach ($m[1] as $i => $match) {
                     $ip = $m[1];
                     $port = $m[2];
