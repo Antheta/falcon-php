@@ -15,8 +15,8 @@ class Script implements ParserInterface
             $items = $node->find('script[src]');
 
             if ($items) {
-                foreach ($items as $script) {
-                    $parsedItems[] = str_replace('&amp;', '&', $script->attr("src"));
+                foreach ($items as $item) {
+                    $parsedItems[] = str_replace('&amp;', '&', $item->attr("src"));
                 }
             }
         }
