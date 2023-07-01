@@ -6,7 +6,7 @@ interface DriverInterface {
     /**
      * The scrape method should get the dom from target site
      */
-    public function scrape(string $target);
+    public function scrape(string $target, array $options);
 
     /**
      * The method should recursively go through every dom element

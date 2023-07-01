@@ -13,11 +13,15 @@ class hQueryDriver implements DriverInterface
 
     public $configuration = [
         'method' => 'GET',
-        'useragent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36'
+        'useragent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
     ];
 
-    public function scrape(string $target) {
-        $doc = hQuery::fromFile($target, false, $this->getContext());
+    public function scrape(string $target, $options = []) {
+        $doc = hQuery::fromURL(
+            $target, 
+            isset($options['headers']) ? $options['headers'] : [], 
+            $this->getContext()
+        );
         
         if ($doc && $doc->find('html')) {
             return $this->recursive($doc->find('html'));

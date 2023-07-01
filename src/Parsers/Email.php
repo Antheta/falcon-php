@@ -13,7 +13,6 @@ class Email extends EmailConfig implements ParserInterface
 
     public function parse($input): array 
     {
-        print_r($this->regex());
         $content = $input["content"];
 
         $emails = [];

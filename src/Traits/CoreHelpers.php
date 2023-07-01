@@ -24,6 +24,30 @@ trait CoreHelpers
         if (isset($target)) $this->target = $target;
     }
 
+    public function addHeaders(array $headers) 
+    {
+        foreach($headers as $header) {
+            $this->addHeader($header);
+        }
+    }
+
+    public function addHeader(string $header) 
+    {
+        $this->options['headers'][] = $header;
+    }
+
+    public function addCookies(array $cookies) 
+    {
+        foreach($cookies as $cookie) {
+            $this->addHeader($cookie);
+        }
+    }
+
+    public function addCookie($name, $value) 
+    {
+        $this->options['cookies'][$name] = $value;
+    }
+
     public function emails()
     {
         return $this->getResult("email");

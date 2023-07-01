@@ -43,7 +43,7 @@ class Core extends Utils
             $this->setTarget($target);
 
             // scrape
-            $this->document = $this->getDriver()->scrape($target);
+            $this->document = $this->getDriver()->scrape($target, $this->options);
         } catch (Exception $e) {
             $this->document = ['error' => $e];
         }

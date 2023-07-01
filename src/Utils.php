@@ -13,6 +13,7 @@ abstract class Utils
 
     protected $driver = null;
     protected $custom_regexes = [];
+    protected $options = [];
 
     /**
      * Get the specific driver
