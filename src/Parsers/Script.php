@@ -8,6 +8,19 @@ class Script implements ParserInterface
 {
     public function parse($input): array 
     {
-        return [];
+        $content = $input["doc"];
+
+        $parsedItems = [];
+        foreach ($content as $node) {
+            $items = $node->find('script[src]');
+
+            if ($items) {
+                foreach ($items as $script) {
+                    $parsedItems[] = str_replace('&amp;', '&', $script->attr("src"));
+                }
+            }
+        }
+        
+        return $parsedItems;
     }
 }
