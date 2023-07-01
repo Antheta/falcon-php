@@ -12,24 +12,11 @@ Falcon is an open-source (MIT licensed) high-performance PHP web scraper with bu
 NOTE! This is only intended for educational purposes. Please do not use this to gather emails or any other personal data for spam.
 
 ## Features
-- Extendable (Ability to create custom parsers & drivers)
-- Multi driver support
+- Extendable (Ability to create custom parsers & drivers).
+- Custom regex support.
+- Many different built-in parsers.
+- Multi driver support (in development).
   - hQuery
-- Custom regex support
-- Built in parsers:
-  - Email addresses
-  - Phonenumbers
-  - IP addresses along with the following data (if found from tables): 
-    - Proxy protocol
-    - Level of anonymity
-    - Speed in ms
-  - Forms
-  - Links
-  - Images
-  - Stylesheets (+inline)
-  - Scripts (+inline)
-  - Fonts
-  - Tables (+data)
 
 ## Installation
 

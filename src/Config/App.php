@@ -19,6 +19,7 @@ class App
 
 		// ** default parsers
 		PARSERS = [
+			"metadata" => \Antheta\Falcon\Parsers\Metadata::class,
 			"email" => \Antheta\Falcon\Parsers\Email::class,
 			"phonenumber" => \Antheta\Falcon\Parsers\Phonenumber::class,
 			"ipaddress" => \Antheta\Falcon\Parsers\IpAddress::class,
