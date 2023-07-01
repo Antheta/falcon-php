@@ -11,12 +11,11 @@ class hQueryDriver implements DriverInterface
 
     public $result;
 
-    public $configuration = [
-        'method' => 'GET',
-        'useragent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
-    ];
+    protected $options;
 
     public function scrape(string $target, $options = []) {
+        $this->options = $options;
+
         $doc = hQuery::fromURL(
             $target, 
             isset($options['headers']) ? $options['headers'] : [], 
@@ -47,32 +46,12 @@ class hQueryDriver implements DriverInterface
         return $this->content;
     }
 
-    public function parse($key = null, $parsers = []) {
-        if (count($parsers) == 0) {
-            $parsers = $parsers;
-        }
-
-        foreach ($parsers as $parser => $fn) {
-            if (in_array($parser, $parsers)) {
-                if (function_exists("{$fn}")) {
-                    $this->result[$parser] = $fn($this->result);
-                }
-            }
-        }
-
-        if ($key) {
-            return (isset($this->result[$key])) ? $this->result[$key] : $this->result;
-        } else {
-            return $this->result;
-        }
-    }
-
     public function getContext()
     {
         return stream_context_create([
             'http' => [
-                'method' => $this->configuration['method'],
-                'user_agent' => $this->configuration['useragent'],
+                'method' => $this->options['method'],
+                'user_agent' => $this->options['useragent'],
                 'header' => [],
             ]
         ]);
