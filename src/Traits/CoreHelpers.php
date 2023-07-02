@@ -69,6 +69,11 @@ trait CoreHelpers
         return $this->getResult("font");
     }
 
+    public function tables()
+    {
+        return $this->getResult("table");
+    }
+
     protected function getResult($key) 
     {
         return $this->result[$key];

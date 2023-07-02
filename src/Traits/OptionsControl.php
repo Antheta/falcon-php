@@ -6,19 +6,19 @@ trait OptionsControl
 {
     protected $options = [];
     
-    public function addHeaders(array $headers)
+    public function addHeaders(array $headers): void
     {
         foreach ($headers as $header) {
             $this->addHeader($header);
         }
     }
 
-    public function addHeader(string $header)
+    public function addHeader(string $header): void
     {
         $this->options['headers'][] = $header;
     }
 
-    public function addCookies(array $cookies)
+    public function addCookies(array $cookies): void
     {
         foreach ($cookies as $cookie) {
             $this->addHeader($cookie);

@@ -27,17 +27,23 @@ class hQueryDriver implements DriverInterface
         }
         
         if ($doc) {
+            $this->content[] = isset($options['custom_driver']) ? $doc : $doc->find('html');
+
             return $this->recursive(isset($options['custom_driver']) ? $doc : $doc->find('html'));
         }
     }
 
     public function recursive($html) {
         if (isset($html) && !empty($html)) {
-            preg_match_all('/<head>|<body>|<div>|<a>/im', $html, $fmatches);
+            preg_match_all('/<html>|<head>|<body>|<div>|<a>/im', $html, $fmatches);
             foreach ($fmatches as &$fmatch) {
                 foreach ($fmatch as $key => $el) {
+                    //print_r($el);
                     $node = $html->find(str_replace('>', '', str_replace('<', '', $el)));
-                    preg_match_all('/<head>|<body>|<div>|<a>/im', $node->html(), $smatch);
+                    preg_match_all('/<head>|<head>|<body>|<div>|<a>/im', $node->html(), $smatch);
+
+                    //print_r($smatch);
+                    //print_r($node->html());
 
                     $this->content[] = !is_array($node) ? $node : [];
                 }

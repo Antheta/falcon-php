@@ -23,6 +23,6 @@ class Script implements ParserInterface
             }
         }
         
-        return $parsedItems;
+        return array_unique($parsedItems);
     }
 }

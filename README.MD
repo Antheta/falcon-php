@@ -124,3 +124,9 @@ $falcon->addDrivers([
 You could migrate from hQuery to headless JavaScript browser like CapserJS & Phantom to load dynamic content. This way you can also scrape data that is loaded dynamically (after the inital page load).
 
 ## Contributing
+
+
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

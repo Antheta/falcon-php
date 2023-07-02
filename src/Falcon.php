@@ -10,8 +10,6 @@ use Antheta\Falcon\Core;
  * @author     Antheta Labs <info@antheta.com>
  * @copyright  2023 Antheta Labs
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @version    1.0.0
- * 
  */
 class Falcon 
 {

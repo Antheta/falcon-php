@@ -37,7 +37,7 @@ trait ParserControl
         return $this;
     }
 
-    public function addRegexes($parser, $regexes) 
+    protected function addRegexes($parser, $regexes) 
     {
         if (isset($regexes) && is_array($regexes) && !empty($regexes)) {
             foreach ($regexes as $regex) {
@@ -46,12 +46,12 @@ trait ParserControl
         }
     }
 
-    public function addRegex($parser, string $regex): void
+    protected function addRegex($parser, string $regex): void
     {
         $this->custom_regexes[$parser] = $regex;
     }
 
-    public function resetDefaultRegexes($parser = null)
+    protected function resetDefaultRegexes($parser = null)
     {
         $this->parser_options["reset_default_regexes"] = ($parser) ? $parser : true;
     }

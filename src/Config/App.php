@@ -26,7 +26,7 @@ class App
 			"image" => \Antheta\Falcon\Parsers\Image::class,
 			"stylesheet" => \Antheta\Falcon\Parsers\Stylesheet::class,
 			"script" => \Antheta\Falcon\Parsers\Script::class,
-			"font" => \Antheta\Falcon\Parsers\Font::class,
+			"table" => \Antheta\Falcon\Parsers\Table::class,
 		]
 
 	;
