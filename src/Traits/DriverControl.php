@@ -95,6 +95,11 @@ trait DriverControl
         return null;
     }
 
+    public function setCustomDriverResult($html) 
+    {
+        $this->custom_driver_result = $html;
+    }
+
     /**
      * Get the specific driver
      * 
