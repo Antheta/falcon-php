@@ -8,10 +8,12 @@ class Script implements ParserInterface
 {
     public function parse($input): array 
     {
-        $content = $input["doc"];
+        if (!$input) {
+            return [];
+        }
 
         $parsedItems = [];
-        foreach ($content as $node) {
+        foreach ($input as $node) {
             $items = $node->find('script[src]');
 
             if ($items) {

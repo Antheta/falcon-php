@@ -8,10 +8,12 @@ class Metadata implements ParserInterface
 {
     public function parse($input): array 
     {
-        $content = $input["doc"];
+        if (!$input) {
+            return [];
+        }
 
         $parsedItems = [];
-        foreach ($content as $node) {
+        foreach ($input as $node) {
             $parsedItems['title'] = ($node->find('title') !== null) ?? $node->find('title')->text();
             $parsedItems['description'] = ($node->find('meta[name="description"]') !== null) ?? $node->find('meta[name="description"]')->attr('content');
         }

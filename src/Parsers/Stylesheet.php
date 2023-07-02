@@ -8,10 +8,12 @@ class Stylesheet implements ParserInterface
 {
     public function parse($input): array 
     {
-        $content = $input["doc"];
+        if (!$input) {
+            return [];
+        }
 
         $stylesheets = array();
-        foreach ($content as $node) {
+        foreach ($input as $node) {
             if ($node->find('link[rel="stylesheet"]')) {
                 foreach ($node->find('link[rel="stylesheet"]') as $i => $node) {
                     if (

@@ -4,6 +4,8 @@ namespace Antheta\Falcon\Traits;
 
 trait OptionsControl
 {
+    protected $options = [];
+    
     public function addHeaders(array $headers)
     {
         foreach ($headers as $header) {

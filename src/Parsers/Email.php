@@ -11,14 +11,16 @@ class Email extends EmailConfig implements ParserInterface
 {
     use RegexControl;
 
-    public function parse($input): array 
+    public function parse($doc): array 
     {
-        $content = $input["content"];
+        if (!$doc) {
+            return [];
+        }
 
         $emails = [];
         foreach ($this->regex() as $regex) {
-            foreach ($content as $node) {
-                @preg_match_all($regex, $node, $matches);
+            foreach ($doc as $node) {
+                @preg_match_all($regex, $node->html(), $matches);
                 if (!isset($matches[0])) {
                     continue;
                 }

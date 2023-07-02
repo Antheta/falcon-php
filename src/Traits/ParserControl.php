@@ -2,8 +2,14 @@
 
 namespace Antheta\Falcon\Traits;
 
+use Antheta\Falcon\Config\App;
+
 trait ParserControl
 {
+    protected $parsers = App::PARSERS;
+    protected $custom_regexes = [];
+    protected $parser_options = [];
+
     /**
      * Add a custom parser
      * 

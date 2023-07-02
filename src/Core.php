@@ -2,7 +2,6 @@
 
 namespace Antheta\Falcon;
 
-use Antheta\Falcon\Config\App;
 use Antheta\Falcon\Utils;
 use Antheta\Falcon\Parser;
 use Exception;
@@ -13,18 +12,9 @@ class Core extends Utils
 
     public $result = [];
 
+    public $custom_driver_result = [];
+
     public $document = [];
-
-    protected $parser_options = [];
-
-    protected $parsers = App::PARSERS;
-
-    protected $drivers = App::DRIVERS;
-
-    public function __construct()
-    {
-        $this->driver = new $this->drivers[App::DRIVER];
-    }
 
     /**
      * Run Scraper
@@ -42,8 +32,11 @@ class Core extends Utils
             // set target site
             $this->setTarget($target);
 
-            // scrape
-            $this->document = $this->getDriver()->scrape($target, $this->options);
+            if ($this->isCustomDriver()) {
+                $this->custom_driver_result = $this->getDriver()->scrape($target, $this->options);
+            } else {
+                $this->document = $this->getDriver()->scrape($target, $this->options);
+            }
         } catch (Exception $e) {
             $this->document = ['error' => $e];
         }
@@ -56,6 +49,16 @@ class Core extends Utils
      */
     public function parse($parsers = [])
     {
+        if ($this->isCustomDriver()) {
+            $this->addOptions([
+                'custom_driver' => true
+            ]);
+
+            $this->useDriver('hquery');
+
+            $this->document = $this->getDriver()->scrape($this->custom_driver_result, $this->options);
+        }
+
         if (count($parsers) == 0) {
             $parsers = $this->parsers;
         } else {

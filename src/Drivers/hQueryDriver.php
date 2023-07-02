@@ -9,21 +9,25 @@ class hQueryDriver implements DriverInterface
 {
     public $content;
 
-    public $result;
-
     protected $options;
 
     public function scrape(string $target, $options = []) {
         $this->options = $options;
 
-        $doc = hQuery::fromURL(
-            $target, 
-            isset($options['headers']) ? $options['headers'] : [], 
-            $this->getContext()
-        );
+        if (isset($options['custom_driver'])) {
+            $doc = hQuery::fromHTML(
+                $target
+            );
+        } else {
+            $doc = hQuery::fromURL(
+                $target,
+                isset($options['headers']) ? $options['headers'] : [],
+                $this->getContext()
+            );
+        }
         
-        if ($doc && $doc->find('html')) {
-            return $this->recursive($doc->find('html'));
+        if ($doc) {
+            return $this->recursive(isset($options['custom_driver']) ? $doc : $doc->find('html'));
         }
     }
 
@@ -35,10 +39,7 @@ class hQueryDriver implements DriverInterface
                     $node = $html->find(str_replace('>', '', str_replace('<', '', $el)));
                     preg_match_all('/<head>|<body>|<div>|<a>/im', $node->html(), $smatch);
 
-                    if (!is_array($node)) {
-                        $this->content["content"][] = $node->html() ? $node->html() : $node;
-                        $this->content["doc"][] = $node;
-                    }
+                    $this->content[] = !is_array($node) ? $node : [];
                 }
             }
         }
@@ -50,8 +51,8 @@ class hQueryDriver implements DriverInterface
     {
         return stream_context_create([
             'http' => [
-                'method' => $this->options['method'],
-                'user_agent' => $this->options['useragent'],
+                'method' => isset($this->options['method']) ? $this->options['method'] : '',
+                'user_agent' => isset($this->options['useragent']) ? $this->options['useragent'] : '',
                 'header' => [],
             ]
         ]);

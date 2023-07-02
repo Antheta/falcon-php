@@ -13,13 +13,15 @@ class IpAddress extends IpAddressConfig implements ParserInterface
 
     public function parse($input): array 
     {
-        $content = $input["content"];
+        if (!$input) {
+            return [];
+        }
 
         $ip_addresses = [];
         $ip_addresses_checker = [];
         foreach ($this->regex() as $regex) {
-            foreach ($content as $node) {
-                preg_match_all($regex, $node, $m);
+            foreach ($input as $node) {
+                preg_match_all($regex, $node->html(), $m);
                 if (!isset($m[0])) {
                     continue;
                 }

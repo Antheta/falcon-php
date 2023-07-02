@@ -16,11 +16,11 @@ Please notice that this library is not intended to be used to gather emails or a
 [Documentation](http://docs.antheta.com/)
 
 ## Features
-- Extendable (Ability to create custom parsers & drivers).
-- Custom regex support.
 - Many different built-in parsers.
-- Multi driver support (in development).
-  - hQuery
+- Near-endless extendability
+  - Custom parser support.
+  - Custom regex support.
+  - Custom driver (scraper) support.
 
 ## Installation
 

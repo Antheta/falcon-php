@@ -12,10 +12,12 @@ class Phonenumber extends PhonenumberConfig implements ParserInterface
 
     public function parse($input): array 
     {
-        $content = $input["doc"];
+        if (!$input) {
+            return [];
+        }
 
         $phonenumbers = [];
-        foreach ($content as $node) {
+        foreach ($input as $node) {
             if (
                 $node->find("a") &&
                 $node->find("a")->attr("href") &&

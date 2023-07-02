@@ -10,8 +10,6 @@ class App
 		// ** default drivers
 		DRIVERS = [
 			"hquery" => \Antheta\Falcon\Drivers\hQueryDriver::class,
-			"simple_html_dom" => null,
-			"casperjs" => null
 		],
 
 		// ** default driver

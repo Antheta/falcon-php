@@ -11,10 +11,12 @@ class Form implements ParserInterface
 
     public function parse($input): array
     {
-        $content = $input["doc"];
+        if (!$input) {
+            return [];
+        }
 
-        foreach ($content as $node) {
-            $this->forms = $node->find("form");
+        foreach ($input as $node) {
+            $this->forms = $node->find("form") ? $node->find("form") : [];
         }
 
         $this->parseForms();
