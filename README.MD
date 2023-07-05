@@ -54,7 +54,7 @@ Helper methods for returning the results:
 | results | 
 | emails | 
 | phonenumbers | 
-| ipAddresses |
+| ipaddresses |
 | forms |
 | links |
 | images |

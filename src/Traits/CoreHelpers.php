@@ -24,12 +24,17 @@ trait CoreHelpers
         if (isset($target)) $this->target = $target;
     }
 
+    public function setResult($result): void
+    {
+        //if (isset($result)) $this->custom_driver_result = [$result];
+    }
+
     public function emails(): array
     {
         return $this->getResult("email");
     }
 
-    public function ipAddresses(): array
+    public function ipaddresses(): array
     {
         return $this->getResult("ipaddress");
     }

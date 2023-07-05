@@ -34,14 +34,6 @@ class Core extends Utils
 
             if ($this->isCustomDriver()) {
                 $this->custom_driver_result = $this->getDriver()->scrape($target, $this->options);
-
-                $this->addOptions([
-                    'custom_driver' => true
-                ]);
-
-                $this->useDriver('hquery');
-
-                $this->document = $this->getDriver()->scrape($this->custom_driver_result, $this->options);
             } else {
                 $this->document = $this->getDriver()->scrape($target, $this->options);
             }
@@ -54,6 +46,16 @@ class Core extends Utils
 
     public function parse(array $parsers = []): Core
     {
+        if ($this->isCustomDriver()) {
+            $this->addOptions([
+                'custom_driver' => true
+            ]);
+
+            $this->useDriver('hquery');
+
+            $this->document = $this->getDriver()->scrape($this->custom_driver_result, $this->options);
+        }
+
         if (count($parsers) == 0) {
             $parsers = $this->parsers;
         } else {
