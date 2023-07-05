@@ -9,7 +9,7 @@ class Table implements ParserInterface
     protected $tables = [];
     protected $parsed = [];
 
-    public function parse($input): array
+    public function parse(array $input): array
     {
         if (!$input) {
             return [];

@@ -6,11 +6,11 @@ use Antheta\Falcon\Config\App;
 
 trait DriverControl
 {
-    protected $drivers = App::DRIVERS;
+    protected array $drivers = App::DRIVERS;
 
-    protected $driver = null;
+    protected mixed $driver = null;
     
-    protected $default_driver = null;
+    protected mixed $default_driver = null;
 
     public function __construct()
     {
@@ -95,7 +95,7 @@ trait DriverControl
         return null;
     }
 
-    public function setCustomDriverResult($html) 
+    public function setCustomDriverResult($html): void
     {
         $this->custom_driver_result = $html;
     }

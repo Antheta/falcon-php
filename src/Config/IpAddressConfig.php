@@ -4,9 +4,9 @@ namespace Antheta\Falcon\Config;
 
 class IpAddressConfig
 {
-	public $custom_regexes = [];
+	protected array $custom_regexes = [];
 
-	protected $default_regexes = [
+	protected array $default_regexes = [
 		'/(([0-9][0-9]?|[0-1][0-9][0-9]|[2][0-4][0-9]|[2][5][0-5])\\.){3}([0-9][0-9]?|[0-1][0-9][0-9]|[2][0-4][0-9]|[2][5][0-5])$/',
 		'/(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]):[0-9]$/',
 		'/(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]):[0-9][0-9]$/',
@@ -21,12 +21,13 @@ class IpAddressConfig
 		'/^(\d[\d.]+):(\d+)\b/',
 	];
 
-	public function regex()
+	protected function regex(): array
 	{
 		return array_merge($this->default_regexes, $this->custom_regexes);
 	}
 
-	public static function protocols() {
+	protected static function protocols(): array
+	{
 		return [
 				'http',
 				'https',
@@ -35,7 +36,8 @@ class IpAddressConfig
 		];
 	}
 
-	public static function anonymity() {
+	protected static function anonymity(): array
+	{
 		return [
 			'elite',
 			'anonymous',

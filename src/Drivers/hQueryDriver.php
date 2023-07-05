@@ -7,11 +7,12 @@ use Antheta\Falcon\Drivers\Interfaces\DriverInterface;
 
 class hQueryDriver implements DriverInterface
 {
-    public $content;
+    public array $content;
 
-    protected $options;
+    protected array $options;
 
-    public function scrape(string $target, $options = []) {
+    public function scrape(string $target, array $options = []): array
+    {
         $this->options = $options;
 
         if (isset($options['custom_driver'])) {
@@ -38,12 +39,8 @@ class hQueryDriver implements DriverInterface
             preg_match_all('/<html>|<head>|<body>|<div>|<a>/im', $html, $fmatches);
             foreach ($fmatches as &$fmatch) {
                 foreach ($fmatch as $key => $el) {
-                    //print_r($el);
                     $node = $html->find(str_replace('>', '', str_replace('<', '', $el)));
                     preg_match_all('/<head>|<head>|<body>|<div>|<a>/im', $node->html(), $smatch);
-
-                    //print_r($smatch);
-                    //print_r($node->html());
 
                     $this->content[] = !is_array($node) ? $node : [];
                 }

@@ -9,7 +9,7 @@ class Form implements ParserInterface
     protected $forms = [];
     protected $parsed = [];
 
-    public function parse($input): array
+    public function parse(array $input): array
     {
         if (!$input) {
             return [];

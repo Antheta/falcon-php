@@ -11,7 +11,7 @@ class Email extends EmailConfig implements ParserInterface
 {
     use RegexControl;
 
-    public function parse($doc): array 
+    public function parse(array $doc): array 
     {
         if (!$doc) {
             return [];
@@ -20,22 +20,21 @@ class Email extends EmailConfig implements ParserInterface
         $emails = [];
         foreach ($this->regex() as $regex) {
             foreach ($doc as $node) {
-                @preg_match_all($regex, $node->html(), $matches);
-                if (!isset($matches[0])) {
+                @preg_match_all($regex, $node->html(), $candidates);
+                if (!isset($candidates[0])) {
                     continue;
                 }
 
-                foreach ($matches[0] as $m) {
-                    $r = str_replace($this->at_signs(), "@", $m);
-                    if (Validator::email($r)) {
-                        if (!in_array($m, $emails)) {
-                            $emails[] = $m;
+                foreach ($candidates[0] as $candidate) {
+                    if ($this->modifiers && is_array($this->modifiers)) {
+                        foreach ($this->modifiers as $modifier) {
+                            $emails[] = (new $modifier)->handle($this, $candidate);
                         }
                     }
                 }
             }
         }
 
-        return $emails;
+        return array_unique($emails);
     }
 }

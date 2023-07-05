@@ -11,7 +11,7 @@ class IpAddress extends IpAddressConfig implements ParserInterface
 {
     use RegexControl;
 
-    public function parse($input): array 
+    public function parse(array $input): array 
     {
         if (!$input) {
             return [];

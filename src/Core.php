@@ -8,13 +8,13 @@ use Exception;
 
 class Core extends Utils
 {
-    public $target; 
+    public string $target = ''; 
 
-    public $result = [];
+    public array $result = [];
 
-    public $custom_driver_result = [];
+    public array $custom_driver_result = [];
 
-    public $document = [];
+    public array $document = [];
 
     /**
      * Run Scraper
@@ -22,7 +22,7 @@ class Core extends Utils
      * @param string $target
      * @return Core
      */
-    public function run($target = null) : Core
+    public function run(string $target = null): Core
     {
         try {
             if ($this->checkTarget()) {
@@ -34,6 +34,14 @@ class Core extends Utils
 
             if ($this->isCustomDriver()) {
                 $this->custom_driver_result = $this->getDriver()->scrape($target, $this->options);
+
+                $this->addOptions([
+                    'custom_driver' => true
+                ]);
+
+                $this->useDriver('hquery');
+
+                $this->document = $this->getDriver()->scrape($this->custom_driver_result, $this->options);
             } else {
                 $this->document = $this->getDriver()->scrape($target, $this->options);
             }
@@ -44,21 +52,8 @@ class Core extends Utils
         return $this;
     }
 
-    /**
-     * 
-     */
-    public function parse($parsers = [])
+    public function parse(array $parsers = []): Core
     {
-        if ($this->isCustomDriver()) {
-            $this->addOptions([
-                'custom_driver' => true
-            ]);
-
-            $this->useDriver('hquery');
-
-            $this->document = $this->getDriver()->scrape($this->custom_driver_result, $this->options);
-        }
-
         if (count($parsers) == 0) {
             $parsers = $this->parsers;
         } else {
@@ -84,7 +79,7 @@ class Core extends Utils
      * 
      * @return boolean
      */
-    public function checkTarget()
+    public function checkTarget(): bool
     {
         return $this->target ? true : false;
     }

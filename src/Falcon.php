@@ -20,7 +20,7 @@ class Falcon
     {  
     }
 
-    public static function getInstance()
+    public static function getInstance(): Core
     {
         if (self::$_instance === NULL) {
             self::$_instance = new Core();

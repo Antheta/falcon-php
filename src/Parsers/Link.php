@@ -8,7 +8,7 @@ class Link implements ParserInterface
 {
     protected $unallowed_in_link = ["tel:", "mailto:"];
 
-    public function parse($input): array 
+    public function parse(array $input): array 
     {
         if (!$input) {
             return [];

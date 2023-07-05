@@ -4,13 +4,13 @@ namespace Antheta\Falcon\Config;
 
 class PhonenumberConfig
 {
-	public $custom_regexes = [];
+	protected array $custom_regexes = [];
 
-	protected $default_regexes = [
+	protected array $default_regexes = [
 		'/([\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,12})/'
 	];
 
-	public function regex()
+	protected function regex(): array
 	{
 		return array_merge($this->default_regexes, $this->custom_regexes);
 	}

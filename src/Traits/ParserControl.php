@@ -6,9 +6,9 @@ use Antheta\Falcon\Config\App;
 
 trait ParserControl
 {
-    protected $parsers = App::PARSERS;
-    protected $custom_regexes = [];
-    protected $parser_options = [];
+    protected array $parsers = App::PARSERS;
+    protected array $custom_regexes = [];
+    protected array $parser_options = [];
 
     /**
      * Add a custom parser
@@ -37,7 +37,7 @@ trait ParserControl
         return $this;
     }
 
-    protected function addRegexes($parser, $regexes) 
+    public function addRegexes($parser, $regexes) 
     {
         if (isset($regexes) && is_array($regexes) && !empty($regexes)) {
             foreach ($regexes as $regex) {
@@ -46,12 +46,12 @@ trait ParserControl
         }
     }
 
-    protected function addRegex($parser, string $regex): void
+    public function addRegex($parser, string $regex): void
     {
         $this->custom_regexes[$parser] = $regex;
     }
 
-    protected function resetDefaultRegexes($parser = null)
+    public function resetDefaultRegexes($parser = null)
     {
         $this->parser_options["reset_default_regexes"] = ($parser) ? $parser : true;
     }

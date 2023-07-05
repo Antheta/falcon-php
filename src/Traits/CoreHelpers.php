@@ -24,62 +24,62 @@ trait CoreHelpers
         if (isset($target)) $this->target = $target;
     }
 
-    public function emails()
+    public function emails(): array
     {
         return $this->getResult("email");
     }
 
-    public function ipAddresses()
+    public function ipAddresses(): array
     {
         return $this->getResult("ipaddress");
     }
 
-    public function phonenumbers()
+    public function phonenumbers(): array
     {
         return $this->getResult("phonenumber");
     }
 
-    public function forms()
+    public function forms(): array
     {
         return $this->getResult("form");
     }
 
-    public function links()
+    public function links(): array
     {
         return $this->getResult("link");
     }
 
-    public function images()
+    public function images(): array
     {
         return $this->getResult("image");
     }
 
-    public function stylesheets()
+    public function stylesheets(): array
     {
         return $this->getResult("stylesheet");
     }
 
-    public function scripts()
+    public function scripts(): array
     {
         return $this->getResult("script");
     }
 
-    public function fonts()
+    public function fonts(): array
     {
         return $this->getResult("font");
     }
 
-    public function tables()
+    public function tables(): array
     {
         return $this->getResult("table");
     }
 
-    protected function getResult($key) 
+    protected function getResult(string $key): array
     {
         return $this->result[$key];
     }
 
-    public function results()
+    public function results(): array
     {
         return $this->result;
     }

@@ -6,5 +6,5 @@ interface ParserInterface {
     /**
      * This method is for parsing the dom
      */
-    public function parse($input): array;
+    public function parse(array $input): array;
 }

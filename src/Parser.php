@@ -4,7 +4,7 @@ namespace Antheta\Falcon;
 
 class Parser
 {
-    public static function parse($document, $parser, $regexes, $options = []) 
+    public static function parse(array $document, string $parser, array $regexes, array $options = []): array
     {
         $parserClass = ucfirst($parser);
         if (class_exists("\\Antheta\\Falcon\\Parsers\\$parserClass") && is_string($parserClass)) {

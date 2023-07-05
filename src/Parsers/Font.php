@@ -6,7 +6,7 @@ use Antheta\Falcon\Parsers\Interfaces\ParserInterface;
 
 class Font implements ParserInterface
 {
-    public function parse($input): array
+    public function parse(array $input): array
     {
         return [];
     }

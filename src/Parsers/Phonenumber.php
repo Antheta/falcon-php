@@ -10,7 +10,7 @@ class Phonenumber extends PhonenumberConfig implements ParserInterface
 {
     use RegexControl;
 
-    public function parse($input): array 
+    public function parse(array $input): array 
     {
         if (!$input) {
             return [];
