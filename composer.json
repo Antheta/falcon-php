@@ -8,7 +8,21 @@
             "Antheta\\Falcon\\": "src/"
         }
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": true
+    },
     "require": {
         "duzun/hquery": "^3.0"
+    },
+    "require-dev": {
+        "pestphp/pest": "^1.20"
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
     }
 }
