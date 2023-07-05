@@ -3,3 +3,4 @@
 .env
 ./examples/tmp
 .phpunit.result.cache
+/build
