@@ -4,6 +4,11 @@
     <source media="(prefers-color-scheme: dark)" srcset="./assets/falcon.png">
     <img align="center" src="./assets/falcon.png" height="150">
   </picture>
+  <center>
+    <a href="https://github.com/Antheta/falcon-php/actions">
+      <img src="https://github.com/Antheta/falcon-php/actions/workflows/run-tests.yml/badge.svg">
+    </a>
+  </center>
 </a>
 </p>
 
