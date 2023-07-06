@@ -26,7 +26,7 @@ trait CoreHelpers
 
     public function setResult($result): void
     {
-        //if (isset($result)) $this->custom_driver_result = [$result];
+        if (isset($result)) $this->custom_driver_result = [$result];
     }
 
     public function emails(): array

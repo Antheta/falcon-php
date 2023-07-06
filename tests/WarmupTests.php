@@ -8,9 +8,8 @@ $html = file_get_contents($htmlDocument);
 
 $falcon = \Antheta\Falcon\Falcon::getInstance();
 
-$falcon->addDrivers(["Test" => null]);
-$falcon->useDriver("test");
+$falcon->addDrivers(["testDriver" => null]);
+$falcon->useDriver("testDriver");
+$falcon->addOptions(["custom_driver" => true]);
 
-$falcon->setResult($html);
-
-$falcon->getDriver()->scrape($html, ["custom_driver" => true]);
+$falcon->run($html);
