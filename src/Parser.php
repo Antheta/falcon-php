@@ -32,5 +32,7 @@ class Parser
                 // do nothing
             }
         }
+
+        return [];
     }
 }
