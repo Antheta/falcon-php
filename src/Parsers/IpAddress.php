@@ -21,21 +21,21 @@ class IpAddress extends IpAddressConfig implements ParserInterface
         $ip_addresses_checker = [];
         foreach ($this->regex() as $regex) {
             foreach ($input as $node) {
-                preg_match_all($regex, $node->html(), $m);
-                if (!isset($m[0])) {
+                preg_match_all($regex, $node->html(), $candidates);
+                if (!isset($candidates[0])) {
                     continue;
                 }
 
-                foreach ($m[1] as $i => $match) {
-                    $ip = $m[1];
-                    $port = $m[2];
-                    if (Validator::ip($match)) {
-                        if (!in_array($match, $ip_addresses_checker)) {
-                            $ip_addresses_checker[] = $match;
+                foreach ($candidates[1] as $i => $candidate) {
+                    $ip = $candidates[1];
+                    $port = $candidates[2];
+                    if (Validator::ip($candidate)) {
+                        if (!in_array($candidate, $ip_addresses_checker)) {
+                            $ip_addresses_checker[] = $candidate;
                             $ip_addresses[] = array(
                                 'ip_address' => $ip[$i],
                                 'port' => $port[$i],
-                                'match' => $match,
+                                'match' => $candidate,
                                 'ip' => $ip[$i] . ':' . $port[$i]
                             );
                         }
