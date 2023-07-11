@@ -5,7 +5,6 @@ namespace Antheta\Falcon\Parsers;
 use Antheta\Falcon\Config\EmailConfig;
 use Antheta\Falcon\Parsers\Interfaces\ParserInterface;
 use Antheta\Falcon\Traits\RegexControl;
-use Antheta\Falcon\Validator;
 
 class Email extends EmailConfig implements ParserInterface
 {
