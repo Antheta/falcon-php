@@ -6,8 +6,6 @@ $results = $falcon->parse()->results();
 
 // TODO: add better validations here
 
-print_r($results['ipaddress']);
-
 // email
 it('can parse emails', function () use($results) {
     foreach($results["email"] as $item) {

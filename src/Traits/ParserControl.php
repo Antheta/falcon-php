@@ -55,4 +55,14 @@ trait ParserControl
     {
         $this->parser_options["reset_default_regexes"] = ($parser) ? $parser : true;
     }
+
+    public function isJson(string $content): bool
+    {
+        if (is_string($content)) {
+            json_decode($content);
+            return json_last_error() === JSON_ERROR_NONE;
+        }
+
+        return false;
+    }
 }

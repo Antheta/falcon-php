@@ -26,8 +26,12 @@ class hQueryDriver implements DriverInterface
                 $this->getContext()
             );
         }
-        
+
         if ($doc) {
+            if ($this->isJson($doc)) {
+                return [$doc->html()];
+            }
+
             $this->content[] = isset($options['custom_driver']) ? $doc : $doc->find('html');
 
             return $this->recursive(isset($options['custom_driver']) ? $doc : $doc->find('html'));
@@ -59,5 +63,15 @@ class hQueryDriver implements DriverInterface
                 'header' => [],
             ]
         ]);
+    }
+
+    public function isJson(string $content): bool
+    {
+        if (is_string($content)) {
+            json_decode($content);
+            return json_last_error() === JSON_ERROR_NONE;
+        }
+
+        return false;
     }
 }
