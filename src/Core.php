@@ -46,6 +46,12 @@ class Core extends Utils
 
     public function parse(array $parsers = []): Core
     {
+        if (is_string($this->document[0]) && $this->isJson($this->document[0])) {
+            $this->result['json'] = json_decode($this->document[0], true);
+
+            return $this;
+        }
+
         if ($this->isCustomDriver()) {
             $this->addOptions([
                 'custom_driver' => true
