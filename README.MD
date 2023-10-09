@@ -93,7 +93,8 @@ $falcon = Falcon::getInstance()
 ```
 
 ## Custom parsers
-You can also add your own logic:
+
+With custom parsers you are in control of what kind of data will the parser return:
 
 ```php
 $falcon = Falcon::getInstance();
@@ -115,7 +116,7 @@ $falcon->parse("myCustomParser")->results()["myCustomParser"];
 
 ## Custom drivers
 
-Start by creating your own driver class that extends the `DriverInterface` interface and implement the driver specific logic within class.
+Drivers are used for scraping the sites and returning the html to falcon. Drivers can also be used to write completely custom logic and saving it to falcon for later use. Start by creating your own driver class that extends the `DriverInterface` interface and implement the driver specific logic within class.
 
 ```php
 $falcon = Falcon::getInstance();
@@ -126,11 +127,9 @@ $falcon->addDrivers([
 ```
 
 ## Scraping dynamic content
-You could migrate from hQuery to headless JavaScript browser like CapserJS & Phantom to load dynamic content. This way you can also scrape data that is loaded dynamically (after the inital page load).
+You could migrate from hQuery to headless JavaScript browser like CapserJS & Phantom to load dynamic content. This way you can also scrape data that is loaded dynamically (after the inital page load). 
 
-## Contributing
-
-
+Check out [Falcon Drivers](https://github.com/Antheta/falcon-drivers) for getting started.
 
 ## License
 

@@ -27,7 +27,9 @@ class App
 			"stylesheet" => \Antheta\Falcon\Parsers\Stylesheet::class,
 			"script" => \Antheta\Falcon\Parsers\Script::class,
 			"table" => \Antheta\Falcon\Parsers\Table::class,
-		]
+		],
+
+		OPENAI_API_KEY = ""
 
 	;
 
